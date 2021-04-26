@@ -1,0 +1,29 @@
+{% load static %}
+{% load products_extras %}
+
+<div class="stock__card">
+    <a class="stock__card__img"
+    href="{% url 'products:stock_item' stock.id %}">
+    {% modify_imgsrc stock.imgsrc as imgsrc %}
+        <img src="{{ imgsrc }}" alt="">
+    </a>
+    <div class="stock__card__container">
+        <div class="stock__card__title">
+            <a
+            href="{% url 'products:stock_item' stock.id %}">
+                {{ stock.name }}
+            </a>
+        </div>
+        <div class="stock__card__desc">
+        {% modify_stock_desc stock.description as desc %}
+            <span>
+                {{ desc }}
+            </span>
+        </div>
+        <div class="stock__card__button">
+            <a href="{% url 'products:stock_item' stock.id %}">
+                Подробнее
+            </a>
+        </div>
+    </div>
+</div>

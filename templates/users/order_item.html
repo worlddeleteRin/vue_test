@@ -1,0 +1,119 @@
+{% extends '../products/base.html' %}
+{% load products_extras %}
+
+{% block content %}
+
+    <div class="max_width_1">
+    
+    {% include './user_head.html' %}
+
+
+    <div class="order_page">
+        <div class="order_info order_block">
+            <div class="nice_title medium">
+            <span>
+                Заказ #{{ order.id }}
+            </span>
+            </div>
+            <div class="nice_title">
+            <span>
+                Статус заказа: 
+                <span class="order_status uppercase mglr15">
+                    <span value="{{ order.status }}" class="order_status_value mglr15">
+                        {{ order.get_status_display }}
+                    </span>
+                </span>
+            </span>
+            </div>
+            <div class="nice_title pd15">
+            <span>
+                Детали доставки
+            </span>
+            </div>
+            <div class="flex pd10">
+                <i class="fa fa-user grey delivery_info_icon"></i>
+                <div class="info_item medium">
+                    <span>{{ order.name }} </span>,
+                    <span>{{ order.phone }}</span>
+                </div>
+            </div>
+            <div class="flex pd10">
+                <i class="fa fa-map-marker grey delivery_info_icon"></i>
+                <div class="info_item regular">
+                    <span>{{ order.address }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="order_items_block order_block">
+            <div class="nice_title medium">
+            <span>
+                Ваш заказ
+            </span>
+            </div>
+            <div class="order_items_block_container">
+                {% for order_item in order.item_set.all %}
+                {% modify_imgsrc order_item.product.imgsrc as imgsrc %}
+                <div class="order_item_single">
+                    <div class="order_item_single_img">
+                        <img src="{{ imgsrc }}" alt="">
+                    </div>
+                    <a href="{% url 'products:product' order_item.product.id %}"
+                    class="order_item_single_name">
+                        {{ order_item.product.name }}
+                    </a>
+                    <div class="order_item_single_quantity medium">
+                        {{ order_item.quantity }} шт.
+                    </div>
+                    <div class="order_item_single_price medium">
+                        {{ order_item.get_price }} руб.
+                    </div>
+                    {% comment %} <div class="order_item_single_addcart
+                    product__item__addcart"> {% endcomment %}
+                        <span class="product__item__addcart
+                        product__addtocart__global"
+                        value="{{ order_item.product.id }}">
+                        {% is_in_cart order_item.product.id cart as in_cart %} 
+                            {% if in_cart %}
+                            <span class="in__cart__buttonstyle">
+                            Удалить с корзины
+                            </span>
+                            {% else %}
+                                <span class="not__incart__buttonstyle">
+                                    В корзину
+                                </span>
+                            {% endif %}
+                        </span>
+                    {% comment %} </div> {% endcomment %}
+                </div>
+                {% endfor %}
+                {% comment %} eof order_item_single {% endcomment %}
+            </div>
+        </div>
+
+
+    </div>
+
+
+<script>
+    setOrderStatusColors()
+   $('.user_head').addClass('hide');
+   function setOrderStatusColors() {
+            orders_status = $(".order_status_value")
+            for(i = 0; i < orders_status.length; i++) {
+                current_status = $(orders_status[i]).attr("value")
+                if (current_status == 'in_progress') {
+                    $(orders_status[i]).parent().addClass('progress')
+                }
+                else if (current_status == 'completed') {
+                    $(orders_status[i]).parent().addClass('completed')
+                }
+                else if (current_status == 'cancelled') {
+                    $(orders_status[i]).parent().addClass('cancelled')
+                }
+                else {
+                    $(orders_status[i]).parent().addClass('regular')
+                }
+            }
+        }
+</script>
+{% endblock content %}

@@ -1,0 +1,10 @@
+/secure
+.DS_Store
+/__pycache__
+/.vscode
+*__pycache__
+/__pycache__
+__pycache__
+*/__pycache__
+db.sqlite3
+food_fabrik/settings.py
