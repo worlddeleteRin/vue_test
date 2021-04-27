@@ -15,6 +15,7 @@ urlpatterns = [
     path('stock/<int:stock_id>', views.stock_item, name = 'stock_item'),
     path('callme_mail_ajax/', views.callme_mail_ajax, name = 'callme_mail_ajax'),
     # client api
+    path('get_categories_api/', views.get_categories_api, name = 'get_categories_api'),
     path('get_api/', views.get_api, name = 'get_api'),
     path('get_product_by_id_api/', views.get_product_by_id_api, name = 'get_product_by_id_api'),
 ]

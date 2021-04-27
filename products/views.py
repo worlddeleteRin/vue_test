@@ -141,6 +141,12 @@ def callme_mail_ajax(request):
     }, status = 200)
 
 
+def get_categories_api(request):
+    categories = Category.objects.all().order_by('display_priority')
+    categories = list(categories.values())
+    return JsonResponse({
+        'categories': categories,
+    }, status = 200)
 def get_api(request):
     products = Product.objects.all()
     response_products = []

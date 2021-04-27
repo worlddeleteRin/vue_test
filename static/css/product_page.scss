@@ -2,11 +2,6 @@
 
 .product__page {
     &__name {
-        font-size: 24px;
-        font-family: $main-medium;
-        @media (max-width: 816px) {
-            text-align: center;
-        }
     }
     .product__main__container {
         .product__main__container__subimages__mobile {
