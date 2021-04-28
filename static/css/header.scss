@@ -8,18 +8,19 @@
 .main__header__block {
     max-width: $main-width;
     width: 100%;
+    // max-height: 100px;
     // border: 3px solid black;
     @media (min-width: 1000px) {
         margin: 0 5;
     }
     @media (max-width: 1000px) {
-        height: auto;
+        height: 80px;
     }
     margin: 0px auto !important;
     display: flex;
     flex-direction: column;
     background-color: white;
-    min-height: 100px;
+    // min-height: 100px;
     align-items: center;
     align-content: center;
     justify-content: center;
