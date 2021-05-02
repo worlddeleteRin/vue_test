@@ -33,7 +33,10 @@ class OrderAdmin(admin.ModelAdmin):
 
   def user_info(self, obj):
         current_user = obj.user
-        return current_user.name + ', ' + current_user.phone
+        if (current_user):
+          return current_user.name + ', ' + current_user.phone
+        else:
+          return 'Не авторизованный пользователь'
 
   def get_form(self, request, obj=None, change=False, **kwargs):
         form = super().get_form(request, obj, change, **kwargs)

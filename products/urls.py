@@ -18,4 +18,11 @@ urlpatterns = [
     path('get_categories_api/', views.get_categories_api, name = 'get_categories_api'),
     path('get_api/', views.get_api, name = 'get_api'),
     path('get_product_by_id_api/', views.get_product_by_id_api, name = 'get_product_by_id_api'),
+    # user 
+    path('is_user_authorized_api/', views.is_user_authorized_api, name = 'is_user_authorized_api'),
+    path('login_user_ajax/', views.login_user_ajax, name = 'login_user_ajax'),
+    path('logout_user_ajax/', views.logout_user_ajax, name = 'logout_user_ajax'),
+    path('get_user_data_ajax/', views.get_user_data_ajax, name = 'get_user_data_ajax'),
+    path('submit_order_ajax/', views.submit_order_ajax, name = 'submit_order_ajax'),
+    path('get_stocks_api/', views.get_stocks_api, name = 'get_stocks_api'),
 ]

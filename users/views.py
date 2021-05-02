@@ -165,10 +165,10 @@ def login_ajax(request):
     },status = 200)
 
 def login_out_ajax(request):
-    print('start login out ajax')
     login_out_user(request)
     msg = 'your are logged out'
     return JsonResponse({
+        'success': True,
         'message': msg
     },status = 200)
 

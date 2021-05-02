@@ -7,11 +7,18 @@ import os
 import json
 from django.core.files.storage import default_storage
 from food_fabrik.settings import * 
-from cart.models import * 
 
 from django.core.mail import send_mail
 from django.core import serializers
 from django.conf import settings
+
+# from users.models import is_authorized, get_user
+from users.models import * 
+from cart.models import * 
+from cart.views import create_order_ajax
+
+from users.views import login_ajax, login_out_ajax
+
 
 
 # Create your views here.
@@ -249,3 +256,70 @@ def serialize_product(product):
 # #     #     return JsonResponse({
 # #     #         'status': False,
 # #     #     }, status = 200)
+
+
+# user info
+def is_user_authorized_api (request):
+    is_user_auth = is_authorized(request)
+    return JsonResponse({
+        'status': True,
+        'is_authorized': is_user_auth,
+    }, status = 200)
+
+def login_user_ajax (request):
+    return login_ajax(request)
+
+def logout_user_ajax (request):
+    return login_out_ajax(request)
+
+
+def get_user_data_ajax (request):
+    print('start get user data ajax')
+    status = True
+    authorized = is_authorized(request)
+    if authorized:
+        user = get_user(request)
+    else:
+        user = None
+    if user == None:
+        login_out_ajax(request)
+        status = False
+    else:
+        user = serialize_user(user)
+    return JsonResponse({
+        'status': status,
+        'user': user,
+    }, status = 200)
+
+def serialize_user (user):
+    user_dict = {
+        'id': user.id,
+        'name': user.name,
+        'phone': user.phone,
+        'bonus': user.bonus,
+        'addresses': [],
+        'orders': [],
+        'coupons_used': [],
+    }
+    # add user orders
+    for order in user.order_set.all().order_by('-created_at'):
+        current_order = serializers.serialize('python', [order])[0]['fields']
+        current_order['order_items'] = list(order.item_set.all().values())
+        current_order['id'] = order.id
+        user_dict['orders'].append(current_order)
+    # add user coupons used
+    for coupon in user.coupon_set.all():
+        current_coupon = serializers.serialize('python', [coupon])[0]['fields']
+        user_dict['coupons_used'].append(current_coupon)
+
+    return user_dict
+
+def submit_order_ajax(request):
+    return create_order_ajax(request)
+
+
+def get_stocks_api(request):
+    stocks = list(Stock.objects.all().values())
+    return JsonResponse({
+        'stocks': stocks
+    }, status = 200)

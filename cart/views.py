@@ -304,9 +304,9 @@ def create_order_ajax(request):
 
     name = request.GET['name']
     phone = request.GET['phone']
-    delivery = request.GET['delivery']
     address = request.GET['address']
-    payment = request.GET['payment']
+    delivery = request.GET['delivery_method']
+    payment = request.GET['payment_method']
 
     is_auth = is_authorized(request)
     if (is_auth):
@@ -316,14 +316,14 @@ def create_order_ajax(request):
             user.save()
         if coupon:
             coupon.users.add(user)
-        if delivery == 'Самовывоз':
-            address =  'Самовывоз'
-            pass
-        else:
-            address = Address.objects.get(
-                id = delivery
-            ).get_full()
-            delivery = 'Курьер'
+        # if delivery == 'Самовывоз':
+        #     address =  'Самовывоз'
+        #     pass
+        # else:
+        #     address = Address.objects.get(
+        #         id = delivery
+        #     ).get_full()
+        #     delivery = 'Курьер'
         bonus_gained = calc_bonus_gained(user, purchase_amount)
     else:
         user = None
