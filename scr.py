@@ -10,12 +10,14 @@ django.setup()
 
 from products.models import * 
 
-PRODUCTS_PATH = '/Users/noname/work/fabrika_edi/main_project/goods/goods_main3.xlsx'
+# PRODUCTS_PATH = '/Users/noname/work/fabrika_edi/main_project/goods/goods_main3.xlsx'
+PRODUCTS_PATH = '/Users/noname/work/viktor/risitesto/30.05.21/final2.csv'
 
 
 def create_products():
     deleteall()
-    data = pd.read_excel(PRODUCTS_PATH)
+    # data = pd.read_excel(PRODUCTS_PATH)
+    data = pd.read_csv(PRODUCTS_PATH)
     print('data is ', len(data))
     for index, item in data.iterrows():
         print('start creating product')
@@ -27,8 +29,8 @@ def create_products():
             cat = Category.objects.get_or_create(
                 slug = cat_slug,
                 name = item['category'],
-                imgsrc = 'static/images/products/' + item['category_img'].strip(),
-		display_priority = item['category_priority']
+                # imgsrc = 'static/images/products/' + item['category_img'].strip(),
+		        # display_priority = item['category_priority']
             )[0]
         else:
             cat = Category.objects.get(slug = cat_slug)
@@ -42,10 +44,11 @@ def create_products():
             name = item['name'],
             price = item['price'],
             sale_price = sale_price,
-            ves = item['ves'],
+            # ves = item['ves'],
             description = item['description'],
-            imgsrc = 'static/images/products/' + item['imgsrc'].strip(),
-	    display_priority = item['display_priority']
+            imgsrc = 'static/images/products/' + 'loader_image.svg'
+            # item['imgsrc'].strip(),
+    	    # display_priority = item['display_priority']
         )
         product.save()
 

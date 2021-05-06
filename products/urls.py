@@ -25,4 +25,5 @@ urlpatterns = [
     path('get_user_data_ajax/', views.get_user_data_ajax, name = 'get_user_data_ajax'),
     path('submit_order_ajax/', views.submit_order_ajax, name = 'submit_order_ajax'),
     path('get_stocks_api/', views.get_stocks_api, name = 'get_stocks_api'),
+    path('try_register_user_ajax/', views.try_register_user_ajax, name = 'try_register_user_ajax'),
 ]

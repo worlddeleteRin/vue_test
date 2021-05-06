@@ -1650,6 +1650,32 @@
   color: white;
 }
 
+.text_center {
+  text-align: center;
+}
+
+.btn_passive {
+  color: #5c6370 !important;
+  background-color: #f3f3f7 !important;
+}
+
+.btn_active {
+  color: white !important;
+  background-color: #fa5523 !important;
+}
+
+.min_height {
+  min-height: 400px;
+}
+
+.max_width {
+  max-width: 1280px;
+}
+
+.margin_auto {
+  margin: 0px auto;
+}
+
 .stock_page_wrapper {
   max-width: 1280px;
   margin: 0px auto;
@@ -1694,6 +1720,10 @@
 
 .red {
   color: red;
+}
+
+.mgl10 {
+  margin-left: 10;
 }
 
 .mgt10 {
@@ -1838,6 +1868,12 @@
 .nolink {
   text-decoration: none;
   color: black;
+}
+
+.nice_title2 {
+  font-size: 30px;
+  text-size-adjust: 100%;
+  font-family: "nunito-semibold";
 }
 
 .nice__title2__left {
@@ -2023,7 +2059,7 @@ html {
 }
 
 body {
-  font-family: "gpro-text-regular";
+  font-family: "nunito-regular";
 }
 
 body.overflow_disable {
@@ -2431,7 +2467,6 @@ input[type=radio]:checked:after {
 }
 
 .product__page.modal {
-  border: 3px solid black;
   background-color: white;
   position: fixed;
   border-radius: 20px;
@@ -2454,7 +2489,6 @@ input[type=radio]:checked:after {
 }
 
 .product__main__container {
-  border: 3px solid red;
   margin: 10 15;
 }
 .product__main__container__img img {
@@ -2823,10 +2857,6 @@ input[type=radio]:checked:after {
   width: 100%;
 }
 
-.category_container.in_view {
-  border: 1px solid red;
-}
-
 .header_desktop {
   margin: 0px auto;
   max-width: 1280px;
@@ -3007,7 +3037,6 @@ input[type=radio]:checked:after {
 
 .mobile_header_main {
   overflow-y: scroll !important;
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -3015,10 +3044,6 @@ input[type=radio]:checked:after {
   height: 100%;
   background-color: black;
   z-index: 200;
-}
-
-.mobile_header_main.show {
-  display: block !important;
 }
 
 .mobile_header_main_first {
@@ -3101,7 +3126,7 @@ input[type=radio]:checked:after {
   position: fixed;
   background-color: white;
   border-radius: 18px;
-  width: 75%;
+  width: 70%;
   max-width: 560px;
   padding: 36px 48px;
   top: 50%;
@@ -3127,7 +3152,7 @@ input[type=radio]:checked:after {
 .login_popup_title {
   margin: 0px 0px 35px;
   color: black;
-  font-size: 34px;
+  font-size: calc(18px + 1vw);
   font-weight: 700;
   font-family: "nunito-semibold";
   letter-spacing: 0px;
@@ -3136,7 +3161,7 @@ input[type=radio]:checked:after {
 .main_input_title {
   margin: 12 0;
   font-family: "nunito-regular";
-  font-size: 18px;
+  font-size: calc(12px + 0.6vw);
 }
 
 .login_popup_submit {
@@ -3165,12 +3190,16 @@ input[type=radio]:checked:after {
 }
 
 .main_input {
+  padding: 0 20;
+  letter-spacing: 1.2;
+  font-size: 16px !important;
   outline: none;
   height: 36px;
   width: 250px;
   border-radius: 8px;
-  border: 1px solid rgba(92, 99, 112, 0.32);
+  border: none;
   transition: 0.3s all;
+  background-color: #E4FEFF;
 }
 
 .main_input:focus {
@@ -3195,6 +3224,7 @@ input[type=radio]:checked:after {
 }
 
 .mobile_category_swiper {
+  width: 100% !important;
   background-color: white;
 }
 
@@ -3215,11 +3245,101 @@ input[type=radio]:checked:after {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 8px;
   font-size: calc(12px + 0.5vw);
   font-family: "nunito-regular";
+  min-width: 75px;
+  width: auto !important;
 }
 
 .mobile_category_swiper_item.active {
   color: #d15700;
   background-color: #fff0e6;
+}
+
+.empty_cart_title {
+  margin: 20 0;
+  text-align: center;
+  font-family: "nunito-regular";
+  font-size: calc(12px + 1vw);
+}
+
+.empty_cart_go_menu {
+  padding: 20 0;
+  text-align: center;
+}
+.empty_cart_go_menu span {
+  background-color: #fa5523;
+  color: white;
+  border-radius: 25px;
+  padding: 10 20;
+}
+
+.logout_button_container {
+  padding: 40 0 !important;
+}
+
+.logout_button_main {
+  padding: 10 30 !important;
+  font-size: 15px !important;
+}
+
+.popup_error_dialog_container {
+  width: 85%;
+  max-width: 450px;
+  position: fixed;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 400;
+}
+
+.popup_error_dialog_content {
+  text-align: center;
+  border-radius: 25px;
+  padding: 10 30;
+  background-color: red;
+  color: white;
+}
+
+.contacts_container {
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+.contact_block1 {
+  margin: 30 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+@media (max-width: 748px) {
+  .contact_block1 {
+    flex-direction: column;
+  }
+}
+
+.contact_phone {
+  font-size: calc(20px + 1vw);
+}
+
+.contact_request_call {
+  border-radius: 25px;
+  padding: 10 20;
+  font-size: calc(13px + 0.6vw);
+  font-family: "nunito-regular";
+}
+
+.contact_title {
+  font-size: calc(13px + 0.7vw);
+}
+
+.contact_map_button_container {
+  margin: 25 0;
+}
+
+.contact_map_button {
+  border-radius: 25px;
+  padding: 10 30;
+  font-size: calc(13px + 0.7vw);
 }

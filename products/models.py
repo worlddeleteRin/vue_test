@@ -7,8 +7,10 @@ from mptt.models import MPTTModel, TreeForeignKey
 class Category(models.Model):
     slug = models.CharField(default = '', max_length = 300)
     name = models.CharField(default = '', max_length = 300)
-    imgsrc = models.ImageField(upload_to="static/images/products", default = '')
-    display_priority = models.IntegerField(default = 0,)
+    imgsrc = models.ImageField(upload_to="static/images/products", default = '',
+    blank = True, null = True)
+    display_priority = models.IntegerField(default = 0,
+    blank = True, null = True)
     def __str__(self):
         return self.name
 
@@ -57,7 +59,8 @@ class Product(models.Model):
     # imgsrc = models.ImageField(upload_to='static/images', blank = True, null = True)
     imgsrc = models.ImageField(upload_to="static/images/products", default = '',
     blank = True, null = True)
-    display_priority = models.IntegerField(default = 0)
+    display_priority = models.IntegerField(default = 0, 
+    blank = True, null = True)
     def __str__(self):
         return self.name + ' ' + str(self.get_price()) + ' ₽'
     def check_has_parent(self):

@@ -17,7 +17,7 @@ from users.models import *
 from cart.models import * 
 from cart.views import create_order_ajax
 
-from users.views import login_ajax, login_out_ajax
+from users.views import login_ajax, login_out_ajax, register_ajax
 
 
 
@@ -30,10 +30,17 @@ def get_session_key(request):
 
 def get_or_create_cart(request):
     session_key = get_session_key(request)
-    current_cart = Cart.objects.get_or_create(
-        session_key = session_key,
-    )[0],
-    return current_cart[0]
+    if Cart.objects.filter(
+        session_key = session_key
+    ).exists():
+        current_cart = Cart.objects.filter(
+            session_key = session_key
+        )[0]
+    else:
+        current_cart = Cart.objects.get_or_create(
+            session_key = session_key,
+        )[0],
+    return current_cart
 
 def app_client(request):
     template = 'products/index.html'
@@ -160,7 +167,7 @@ def get_api(request):
     for product in products:
         response_product = get_product_serialize(product)
         response_products.append(response_product)
-        print('response products are  \ n \n \n \n', response_products[0])
+        # print('response products are  \ n \n \n \n', response_products[0])
     return JsonResponse({
         'products': response_products,
     }, status = 200)
@@ -323,3 +330,6 @@ def get_stocks_api(request):
     return JsonResponse({
         'stocks': stocks
     }, status = 200)
+
+def try_register_user_ajax(request):
+    return register_ajax(request)

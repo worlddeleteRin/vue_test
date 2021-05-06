@@ -38,7 +38,7 @@ $(document).ready(function() {
     // animateIn: true,
     responsive: {
       0: {
-        items: 1,
+        items:  ,
       },
       600: {
         items: 2,

@@ -26,10 +26,17 @@ def get_session_key(request):
 
 def get_or_create_cart(request):
     session_key = get_session_key(request)
-    current_cart = Cart.objects.get_or_create(
-        session_key = session_key,
-    )[0],
-    return current_cart[0]
+    if Cart.objects.filter(
+        session_key = session_key
+    ).exists():
+        current_cart = Cart.objects.filter(
+            session_key = session_key
+        )[0]
+    else:
+        current_cart = Cart.objects.get_or_create(
+            session_key = session_key,
+        )[0],
+    return current_cart
 
 
 

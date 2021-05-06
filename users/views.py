@@ -193,8 +193,10 @@ def check_user_account(request, username):
         msg = 'На данный номер телефона уже создан аккаунт. Пожалуйста, авторизуйтесь'
     else:
         success = True
-        code, result = send_code(username)
-        print(result)
+        # send code here
+        # code, result = send_code(username)
+        code = 343845 # use tmep code for testing
+        # print(result)
         request.session['sms_code'] = code
     # # user = auth_user(username, password)
     # if user != None:
